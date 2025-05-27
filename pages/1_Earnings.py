@@ -1,8 +1,5 @@
 import streamlit as st
-try:
-    import chromadb
-except Exception as e:
-        print("Couldn't import stuff for chromadb")
+import chromadb
 import os
 from advise_earnings import advise_earnings_from_query
 from chroma import add_ticker_to_chroma
@@ -38,7 +35,7 @@ if st.button("Ask"):
             
             db_query = stock_collection.query(
                 query_texts=[user_question],
-                n_results=10
+                n_results=5
             )
             print(f"[{os.path.basename(__file__)}]  Got query results")
             groq_analysis = advise_earnings_from_query(GROQ_API_KEY, stock, db_query, user_question)
