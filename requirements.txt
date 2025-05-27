@@ -8,6 +8,7 @@ wordcloud
 groq
 alpha_vantage>=2.3.1
 pandas
+pysqlite3-binary
 yfinance
 scikit-learn
 prophet
@@ -18,3 +19,4 @@ protobuf==3.20.3
 opentelemetry-api
 opentelemetry-sdk
 opentelemetry-exporter-otlp-proto-grpc
+pydantic==1.10.13
