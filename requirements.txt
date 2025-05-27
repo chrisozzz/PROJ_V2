@@ -13,8 +13,7 @@ scikit-learn
 prophet
 plotly
 nltk
-pysqlite3-binary > 3.35 # <--- ADD THIS LINE
-chromadb
+chromadb==0.3.23
 protobuf==3.20.3
 opentelemetry-api
 opentelemetry-sdk
