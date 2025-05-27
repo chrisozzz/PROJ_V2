@@ -1,57 +1,45 @@
-#import chromadb
-import requests
 import os
+import requests
+import streamlit as st
+import chromadb
 
 
-#7OOYZDM6H53OW8L8 : 1st
-#YQBAK9042LP6L4W6 : 2nd
-#E2BGLXNMJ7P0G7NS : 3rd
-#use vpn to switch between servers and ip addresses.
-
-'''
-Add a ticker's most recent earnings call transcript to the ChromaDB collection, if not already in it.
-'''
-def add_ticker_to_chroma(ticker: str, ticker_db: str, client) -> None:
+# --- Main Function ---
+def add_ticker_to_chroma(ticker: str, ticker_db: str, client) -> str:
     collections_names = [collection.name for collection in client.list_collections()]
 
     if ticker_db in collections_names:
-        print(f"[{os.path.basename(__file__)}]  {ticker_db} already exists in the database.")
-        return None
-    else:
-        stock_collection = client.create_collection(f"{ticker_db}")
-        print(f"[{os.path.basename(__file__)}]  {ticker_db} was not in the database. A {ticker_db} collection was created.")
+        return f"✅ `{ticker_db}` already exists in the database."
+
+    stock_collection = client.create_collection(f"{ticker_db}")
+
 
     transcript_dict: dict = {}
     year = 2025
     quarter = 4
 
     while len(transcript_dict) == 0 and transcript_dict is not None:
-
-        query_url = f'https://www.alphavantage.co/query?function=EARNINGS_CALL_TRANSCRIPT&symbol={ticker}&quarter={year}Q{quarter}&apikey=KCMNKODOBZ1L8YW7'
+        query_url = f'https://www.alphavantage.co/query?function=EARNINGS_CALL_TRANSCRIPT&symbol={ticker}&quarter={year}Q{quarter}&apikey={os.getenv("ALPHA_API_KEY")}'
         response = requests.get(query_url)
 
         if response.status_code != 200:
-            print(f"[{os.path.basename(__file__)}]  Failed to retrieve transcript for {ticker}. Status code: {response.status_code}")
+            return f"❌ Failed to retrieve transcript. Status code: {response.status_code}"
 
-        else:
+        try:
             data: dict = response.json()
-            try:
-                transcript_dict: dict = data["transcript"]
+            transcript_dict: dict = data["transcript"]
 
-                if len(transcript_dict) == 0:
-                    quarter -= 1
-                    if quarter == 0:
-                        quarter = 4
-                        year -= 1
+            if len(transcript_dict) == 0:
+                quarter -= 1
+                if quarter == 0:
+                    quarter = 4
+                    year -= 1
+                if year == 2024 and quarter < 3:
+                    return f"⚠️ No transcript found for {ticker} in recent quarters."
 
-                    if year == 2024 and quarter < 3:
-                        print(f"[{os.path.basename(__file__)}]  No transcript found for {ticker} in any recent quarter.")
-                        return None
-            
-            except Exception as e:
-                print(f"[{os.path.basename(__file__)}]  No transcript found for {ticker}. Probably API rate limit exceeded.")
-                return None
-    
+        except Exception as e:
+            return f"❌ Error parsing response: {e}"
+
     documents = []
     metadatas = []
     ids = []
@@ -71,7 +59,5 @@ def add_ticker_to_chroma(ticker: str, ticker_db: str, client) -> None:
         metadatas=metadatas,
         ids=ids
     )
-    print(f"[{os.path.basename(__file__)}]  Added {len(documents)} entries to ChromaDB for {ticker} in quarter {year}Q{quarter}.")
 
-    return None
-        
+    return f"✅ Added {len(documents)} entries to `{ticker_db}` for {year}Q{quarter}."

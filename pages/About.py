@@ -3,13 +3,25 @@ import streamlit as st
 
 st.title("About Me")
 
-# Section 1: Purpose of Website
-st.header("Purpose of this Website")
-st.write("""
-This website was created to showcase our team's project and to provide 
-information about the features and goals of the application. We aim to deliver 
-an engaging and user-friendly experience for all visitors.
-""")
+col1, col2 = st.columns(2)
+
+with col1:
+    st.header("Our Purpose")
+    st.write("""
+    This application serves as a tool for stock market traders and financial analysts.\n
+    It guides market professionals in making more informed decisions when investing, buying, and selling.\n
+    Our team built this web app in just 6 weeks, and we are excited to continue improving it!
+    """)
+with col2: 
+    st.header("What we Offer")
+    st.write("""
+    1. AI and machine learning forecasting models\n
+    2. Current news headliners\n
+    3. Sentiment analysis\n
+    4. Generated wordcloud\n
+    5. Applicable charts\n
+    6. AI-powered earnings insights
+    """)
 
 st.header("Meet the Team")
 
@@ -18,8 +30,8 @@ team = [
     {"name": "Elizabeth Flynn", "role": "Project Lead", "image": "images/Elizabeth.png"},
     {"name": "Kevin Gerges", "role": "Backend", "image": "images/Kevin.png"},
     {"name": "Stephanie Manalo", "role": "Designer", "image": "images/Stephanie.png"},
-    {"name": "Christopher Osgood", "role": "Designer", "image": "images/Christopher.png"},
-    {"name": "Kleber Ordonez", "role": "Designer", "image": "images/Kleber.png"},
+    {"name": "Christopher Osgood", "role": "Designer", "image": "images/Christopher.jpg"},
+    {"name": "Kleber Ordonez", "role": "Designer", "image": "images/Kleber2.png"},
     {"name": "Jasper Garcia", "role": "Designer", "image": "images/Jasper.png"},
 ]
 
