@@ -10,7 +10,7 @@ from chroma import add_ticker_to_chroma
 
 @st.cache_resource
 def initialize_chromadb():
-    return chromadb.PersistentClient(path="./chroma")
+    return chromadb.Client()
 
 try:
     CLIENT = initialize_chromadb()
