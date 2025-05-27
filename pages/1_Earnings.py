@@ -12,7 +12,7 @@ GROQ_API_KEY=st.secrets["GROQ_API_KEY"]
 
 @st.cache_resource
 def initialize_chromadb():
-    return chromadb.Client(path="./chroma")
+    return chromadb.Client()
 
 try:
     CLIENT = initialize_chromadb()
