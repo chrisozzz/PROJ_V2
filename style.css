@@ -1,0 +1,123 @@
+/* --- PRIMARY COLORS --- */
+:root {
+    --primary-bg: #F0F2F6; /* Off-white / very light green background */
+    --primary-text-color: #3D7A4F; /* Vibrant green for text */
+    --accent-pink: #D8377E; /* The vibrant pink/magenta for charts and accents */
+    --secondary-text-color: #555555; /* A darker grey for less important text */
+}
+
+/* --- GENERAL BODY & FONT --- */
+body {
+    background-color: var(--primary-bg);
+    color: var(--secondary-text-color);
+    font-family: 'Courier New', Courier, monospace; /* Monospaced font for a retro tech feel */
+}
+
+/* --- MAIN TITLE --- */
+h1 {
+    font-family: 'Arial Black', sans-serif; /* A blocky, bold font */
+    text-align: center;
+    color: var(--primary-bg);
+    background-color: var(--primary-text-color);
+    padding: 15px 10px;
+    border: 3px solid var(--primary-text-color);
+    border-radius: 5px;
+    letter-spacing: 2px;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+/* --- SUBHEADERS --- */
+h2, h3, h4, h5, h6 {
+    color: var(--primary-text-color);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-transform: uppercase; /* Makes subheaders look like titles */
+    letter-spacing: 1px;
+}
+
+/* --- INPUTS & BUTTONS --- */
+.stTextInput > label, .stSelectbox > label {
+    color: var(--primary-text-color);
+    font-weight: bold;
+}
+
+.stTextInput > div > div > input, .stSelectbox > div > div {
+    background-color: var(--primary-bg);
+    border: 2px solid var(--primary-text-color);
+    border-radius: 5px;
+    color: var(--secondary-text-color);
+}
+
+.stButton > button {
+    background-color: var(--primary-text-color);
+    color: var(--primary-bg);
+    border-radius: 5px;
+    border: 2px solid var(--primary-text-color);
+    padding: 10px 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.stButton > button:hover {
+    background-color: var(--primary-bg);
+    color: var(--primary-text-color);
+}
+
+/* --- METRICS & DATA DISPLAY --- */
+.stMetric {
+    background-color: transparent;
+    border: 2px solid var(--primary-text-color);
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.stMetric > label {
+    color: var(--primary-text-color);
+    font-weight: bold;
+}
+
+.stMetric .st-emotion-cache-1g8sfav p { /* Selector for the metric value */
+    color: var(--accent-pink);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* --- NEWS HEADLINES --- */
+.st-emotion-cache-16txtl3 {
+    padding: 0;
+}
+
+/* Styling for the red/pink text in the news headlines */
+strong {
+    color: var(--accent-pink);
+}
+
+/* --- TABS --- */
+.stTabs [data-baseweb="tab-list"] {
+    border-bottom: 2px solid var(--primary-text-color);
+    gap: 12px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    background-color: transparent;
+    color: var(--primary-text-color);
+    padding: 10px;
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: var(--primary-text-color);
+    color: var(--primary-bg);
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+}
+
+/* --- PLOTLY CHARTS --- */
+/* You'll need to adjust colors within your Python plotly code */
+/* This CSS won't directly change the colors inside the chart canvas */
+
+/* --- WORD CLOUD --- */
+/* The colors for the word cloud are set in your Python code. */
+/* This CSS won't override them. Ensure your word cloud generator uses the pink and green palette. */

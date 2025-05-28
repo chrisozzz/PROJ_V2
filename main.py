@@ -1,4 +1,5 @@
-import streamlit as st           
+import streamlit as st 
+          
 from sentiment_analyzer import get_sentiment_analysis   
 from sentiment_visualizer import plot_sentiment_distribution 
 from news_word_cloud import get_wordcloud
@@ -13,6 +14,16 @@ from financial_plotter import plot_historical_price_with_volume, plot_candlestic
 NEWS_API_KEY = st.secrets["NEWS_API_KEY"]
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 ALPHA_API_KEY = st.secrets["ALPHA_API_KEY"]
+
+
+# --- CUSTOM CSS ---
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+local_css("style/style.css")
+
+
 # Initialize NewsApiClient
 newsapi = NewsApiClient(api_key=NEWS_API_KEY)
 
