@@ -18,6 +18,7 @@ ALPHA_API_KEY = st.secrets["ALPHA_API_KEY"]
 
 # --- CUSTOM CSS ---
 def local_css(file_name):
+    print("Loading the css shit")
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
