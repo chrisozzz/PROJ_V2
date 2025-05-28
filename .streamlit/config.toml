@@ -1,2 +1,18 @@
 [server]
 fileWatcherType = "none"
+
+[theme]
+# Accent color for widgets
+primaryColor="#D8377E"
+
+# Main background color
+backgroundColor="#C7CEBD"
+
+# Sidebar background
+secondaryBackgroundColor="#E1E5EB"
+
+# Main text color
+textColor="#3D7A4F"
+
+# Font
+font="monospace"
