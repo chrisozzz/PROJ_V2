@@ -1,10 +1,7 @@
 import os
 import requests
-import streamlit as st
-import chromadb
 
 
-# --- Main Function ---
 def add_ticker_to_chroma(ticker: str, ticker_db: str, client) -> str:
     collections_names = [collection.name for collection in client.list_collections()]
 
